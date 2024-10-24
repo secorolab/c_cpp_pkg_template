@@ -1,0 +1,33 @@
+repos:
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v14.0.0  
+    hooks:
+      - id: clang-format
+        name: clang-format
+        files: \.(cpp|hpp|c|h)$
+
+  - repo: local
+    hooks:
+      - id: c-clang-tidy
+        name: c-clang-tidy
+        entry: clang-tidy
+        language: system
+        files: \.(c|h|cc)$
+        args:
+          - "-p"
+          - "../../build/c_cpp_project_template/"  # Replace 'build/' with your actual compilation database path (add set(CMAKE_EXPORT_COMPILE_COMMANDS ON) in CMakeLists.txt)
+          - "-extra-arg=-isystem"
+          - "-extra-arg=../../install/include"  # Replace 'install/include' with your actual system include path
+
+  - repo: local
+    hooks:
+      - id: cpp-clang-tidy
+        name: cpp-clang-tidy
+        entry: clang-tidy
+        language: system
+        files: \.(cpp|hpp)$
+        args:
+          - "-p"
+          - "../../build/c_cpp_project_template/"  # Replace 'build/' with your actual compilation database path (add set(CMAKE_EXPORT_COMPILE_COMMANDS ON) in CMakeLists.txt)
+          - "-extra-arg=-isystem"
+          - "-extra-arg=../../install/include"  # Replace 'install/include' with your actual system include path
