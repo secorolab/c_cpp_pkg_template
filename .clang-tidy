@@ -17,7 +17,7 @@ WarningsAsErrors: '*'
 
 FormatStyle: file
 
-# HeaderFilterRegex: '.*'
+HeaderFilterRegex: '.*'
 
 CheckOptions:
   - key: readability-identifier-naming.ClassCase

@@ -1,6 +1,13 @@
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+    -   id: check-yaml
+
   - repo: https://github.com/pre-commit/mirrors-clang-format
-    rev: v14.0.0  
+    rev: v19.1.2
     hooks:
       - id: clang-format
         name: clang-format
@@ -8,8 +15,8 @@ repos:
 
   - repo: local
     hooks:
-      - id: c-clang-tidy
-        name: c-clang-tidy
+      - id: c-lint
+        name: c-lint
         entry: clang-tidy
         language: system
         files: \.(c|h|cc)$
@@ -19,10 +26,8 @@ repos:
           - "-extra-arg=-isystem"
           - "-extra-arg=../../install/include"  # Replace 'install/include' with your actual system include path
 
-  - repo: local
-    hooks:
-      - id: cpp-clang-tidy
-        name: cpp-clang-tidy
+      - id: cpp-lint
+        name: cpp-lint
         entry: clang-tidy
         language: system
         files: \.(cpp|hpp)$
@@ -31,3 +36,22 @@ repos:
           - "../../build/PackageName/"  # Replace 'build/' with your actual compilation database path (add set(CMAKE_EXPORT_COMPILE_COMMANDS ON) in CMakeLists.txt)
           - "-extra-arg=-isystem"
           - "-extra-arg=../../install/include"  # Replace 'install/include' with your actual system include path
+
+      - id: cmake-format
+        name: cmake-format
+        entry: cmake-format
+        language: python
+        types: [cmake]
+        args: [--in-place]
+
+      - id: cmake-lint
+        name: cmake-lint
+        entry: cmake-lint
+        language: python
+        types: [cmake]
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.42.0
+    hooks:
+    - id: markdownlint
+      args: ["--fix"]

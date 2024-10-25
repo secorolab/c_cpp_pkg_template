@@ -67,14 +67,13 @@ mkdir ~/c_cpp_ws && cd ~/c_cpp_ws
 mkdir build install src
 ```
 
-> [!IMPORTANT]  
-> The workspace directory structure is recommended, but not mandatory. You can use any directory structure you prefer.
+> [!IMPORTANT]
+> The workspace directory structure is recommended, but not mandatory.
+You can use any directory structure you prefer.
 
 ### Package setup
 
-<details>
-<summary>Cloning</summary>
-<br>
+#### Cloning
 
 1. Clone the repository
 
@@ -92,15 +91,14 @@ mkdir build install src
     cd <PackageName>
     ```
 
-3. Rename the `PackageName` in the CMakeLists.txt file, header and source files, folder names, config file, etc.
+3. Rename the `PackageName` in the CMakeLists.txt file, header and source files, folder names,
+config file, etc.
 
 </details>
 
 or
 
-<details>
-<summary>Creating on your own</summary>
-<br>
+#### Creating on your own
 
 1. Follow the package structure and create the necessary files and directories
 2. Add the necessary content to the files
@@ -135,7 +133,8 @@ or
 2. Run the following command in the build directory
 
     ``` bash
-    cmake -DCMAKE_INSTALL_PREFIX=../../install ../../src/PackageName -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DENABLE_TESTS=ON
+    cmake -DCMAKE_INSTALL_PREFIX=../../install ../../src/PackageName -DCMAKE_BUILD_TYPE=Debug \
+    -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DENABLE_TESTS=ON
     ```
 
     - `-DCMAKE_INSTALL_PREFIX=../../install`: Specifies the installation directory
@@ -157,5 +156,6 @@ or
     make install
     ```
 
-> [!IMPORTANT]  
-> Refer the [best practices](https://github.com/secorolab/.github-private/blob/main/best_practices/c_cpp.md) for more information.
+> [!IMPORTANT]
+> Refer the [best practices](https://github.com/secorolab/.github-private/blob/main/best_practices/c_cpp.md)
+for more information.
