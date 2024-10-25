@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           # sudo apt update
-          # sudo apt-get install -y check clang-format clang-tidy cmake
+          sudo apt-get install -y check clang-format clang-tidy cmake
 
       - name: Set up workspace
         run: |
@@ -56,14 +56,14 @@ jobs:
           cd build/$PACKAGE_NAME
 
           # Configure with specified flags and set install prefix to install
-          # cmake ../../src/$PACKAGE_NAME \
-          #   -DCMAKE_BUILD_TYPE=Release \
-          #   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-          #   -DENABLE_TESTS=ON \
-          #   -DCMAKE_INSTALL_PREFIX=../../install
+          cmake ../../src/$PACKAGE_NAME \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DENABLE_TESTS=ON \
+            -DCMAKE_INSTALL_PREFIX=../../install
 
-          # # Install to the specified install directory
-          # make install
+          # Install to the specified install directory
+          make install
 
       - name: Set up Python
         uses: actions/setup-python@v5
