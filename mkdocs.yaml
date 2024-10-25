@@ -1,7 +1,7 @@
-site_name: ProjectName documentation
-site_url: https://secorolab.github.io/c_cpp_package_template/
-repo_url: https://github.com/secorolab/c_cpp_package_template
-repo_name: secorolab/c_cpp_package_template
+site_name: PackageName documentation
+site_url: https://secorolab.github.io/c_cpp_pkg_template/
+repo_url: https://github.com/secorolab/c_cpp_pkg_template
+repo_name: secorolab/c_cpp_pkg_template
 theme:
   #  logo: assets/logo.png
   icon:

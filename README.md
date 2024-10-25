@@ -1,30 +1,43 @@
 # C_CPP Template Repository
 
-This repository is a template for C/C++ projects.
+This repository is a template for C/C++ packages.
 
-## Project structure
+## Package structure
 
 ``` bash
 .
-├── .clang-format
-├── .clang-tidy
-├── CMakeLists.txt
-├── include
-│   └── ProjectName
-│       └── template.h
-├── .pre-commit-config.yaml
-├── ProjectName-config.cmake.in
-├── README.md
-├── src
-│   ├── CMakeLists.txt
-│   ├── example
-│   │   ├── CMakeLists.txt
-│   │   └── temp_ex.c
-│   └── template.c
-└── test
+└── c_cpp_pkg_template
+    ├── .clang-format
+    ├── .clang-tidy
     ├── CMakeLists.txt
-    ├── main_test.c
-    └── temp_test.c
+    ├── docs
+    │   ├── assets
+    │   │   └── placeholder
+    │   ├── index.md
+    │   └── javascripts
+    │       └── mathjax.js
+    ├── .github
+    │   └── workflows
+    │       └── mkdocs_ci_gh_pages.yml
+    ├── .gitignore
+    ├── include
+    │   └── PackageName
+    │       ├── temp.hpp
+    │       └── template.h
+    ├── mkdocs.yaml
+    ├── PackageName-config.cmake.in
+    ├── .pre-commit-config.yaml
+    ├── README.md
+    ├── src
+    │   ├── CMakeLists.txt
+    │   ├── example
+    │   │   ├── CMakeLists.txt
+    │   │   └── temp_ex.c
+    │   └── template.c
+    └── test
+        ├── CMakeLists.txt
+        ├── main_test.c
+        └── temp_test.c
 ```
 
 ## Setup
@@ -68,34 +81,28 @@ mkdir build install src
     ``` bash
     cd ~/c_cpp_ws/src
 
-    git clone git@github.com:secorolab/c_cpp_project_template.git
+    git clone git@github.com:secorolab/c_cpp_pkg_template.git
     ```
 
 2. Rename the cloned repository
 
     ``` bash
-    mv c_cpp_project_template ProjectName
+    mv c_cpp_pkg_template <PackageName>
 
-    cd ProjectName
+    cd <PackageName>
     ```
 
-3. Rename the project name in the CMakeLists.txt file in the root directory.
-
-4. Rename the project name in the ProjectName-config.cmake.in file
-
-5. Rename the project name in the include/ProjectName directory
-
-6. Rename the project name in the `.c` and `.h` files where necessary
+3. Rename the `PackageName` in the CMakeLists.txt file, header and source files, folder names, config file, etc.
 
 </details>
 
-or 
+or
 
 <details>
 <summary>Creating on your own</summary>
 <br>
 
-1. Follow the project structure and create the necessary files and directories
+1. Follow the package structure and create the necessary files and directories
 2. Add the necessary content to the files
 3. Initialize the git repository
 
@@ -109,26 +116,26 @@ or
 
 1. Make sure the `git` repository is initialized.
 
-2. Run the following command in the root directory of the project.
+2. Run the following command in the `root` directory of the package to install the pre-commit hooks.
 
     ``` bash
     pre-commit install
     ```
 
-## Build
+## Build and install
 
 1. Create a build directory for the package
 
     ``` bash
     cd ~/c_cpp_ws/build
 
-    mkdir ProjectName && cd ProjectName
+    mkdir PackageName && cd PackageName
     ```
 
 2. Run the following command in the build directory
 
     ``` bash
-    cmake -DCMAKE_INSTALL_PREFIX=../../install ../../src/ProjectName -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DENABLE_TESTS=ON
+    cmake -DCMAKE_INSTALL_PREFIX=../../install ../../src/PackageName -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DENABLE_TESTS=ON
     ```
 
     - `-DCMAKE_INSTALL_PREFIX=../../install`: Specifies the installation directory
@@ -150,29 +157,5 @@ or
     make install
     ```
 
-## Commit
-
-1. Add the necessary files to the staging area
-
-    ``` bash
-    git add .
-    ```
-
-2. Commit the changes
-
-    ``` bash
-    git commit -m "Initial commit"
-    ```
-
-    - The following pre-commit hooks will be executed:
-        - clang-format
-        - clang-tidy
-    - If there are any errors, fix them and commit again.
-    - To run the pre-commit hooks manually, run the following command:
-
-        ``` bash
-        pre-commit run --all-files
-        ```
-
-3. Push the changes to the remote repository
-
+> [!IMPORTANT]  
+> Refer the [best practices](https://github.com/secorolab/.github-private/blob/main/best_practices/c_cpp.md) for more information.

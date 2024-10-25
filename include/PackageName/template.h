@@ -1,5 +1,5 @@
-#ifndef PROJECTNAME_TEMPLATE_H
-#define PROJECTNAME_TEMPLATE_H
+#ifndef PACKAGENAME_TEMPLATE_H
+#define PACKAGENAME_TEMPLATE_H
 
 // Function declaration for addition
 int add(int pA, int pB);
@@ -15,4 +15,4 @@ int multiply(int pA, int pB)
     return result;
 }
 
-#endif// PROJECTNAME_TEMPLATE_H
+#endif// PACKAGENAME_TEMPLATE_H

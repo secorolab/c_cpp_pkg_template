@@ -1,4 +1,4 @@
-# ProjectName Home
+# PackageName Home
 
 - Add images, files, etc to the `docs/assets` folder and reference them in your markdown files.
 

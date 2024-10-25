@@ -1,4 +1,4 @@
-#include "ProjectName/template.h"
+#include "PackageName/template.h"
 #include <stdio.h>
 #include <assert.h>
 

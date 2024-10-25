@@ -1,5 +1,5 @@
-#ifndef PROJECTNAME_TEMP_HPP
-#define PROJECTNAME_TEMP_HPP
+#ifndef PACKAGENAME_TEMP_HPP
+#define PACKAGENAME_TEMP_HPP
 
 class Temp
 {
@@ -17,4 +17,4 @@ class Temp
     static const int C_COUNT;
 };
 
-#endif// PROJECTNAME_TEMP_HPP
+#endif// PACKAGENAME_TEMP_HPP
