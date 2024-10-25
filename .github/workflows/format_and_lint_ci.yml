@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          # sudo apt update
+          sudo apt update
           sudo apt-get install -y check clang-format clang-tidy cmake
 
       - name: Set up workspace
@@ -87,6 +87,8 @@ jobs:
         run: |
           # cd to the package-specific directory
           cd src/$PACKAGE_NAME
+
+          pre-commit autoupdate --repo https://github.com/pre-commit/pre-commit-hooks
 
           # Run pre-commit checks
           pre-commit run --show-diff-on-failure --color=always --all-files
