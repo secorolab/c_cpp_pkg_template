@@ -25,31 +25,31 @@ jobs:
       - name: Set up workspace
         run: |
           # Create workspace structure
-          mkdir -p ~/ws/build ~/ws/install ~/ws/src
+          mkdir -p $HOME/ws/build $HOME/ws/install $HOME/ws/src
 
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          path: ~/ws/src
+          path: $HOME/ws/src
 
       - name: Set up build
         run: |
           # Extract package name from CMakeLists.txt project() definition
-          PACKAGE_NAME=$(grep -m1 -Po 'project\(\K[^\)]+' ~/ws/src/CMakeLists.txt)
+          PACKAGE_NAME=$(grep -m1 -Po 'project\(\K[^\)]+' $HOME/ws/src/CMakeLists.txt)
           echo "Detected package name: $PACKAGE_NAME"
 
           # Create build directory for the package
-          mkdir -p ~/ws/build/$PACKAGE_NAME
+          mkdir -p $HOME/ws/build/$PACKAGE_NAME
 
           # Navigate to the package-specific build directory
-          cd ~/ws/build/$PACKAGE_NAME
+          cd $HOME/ws/build/$PACKAGE_NAME
 
-          # Configure with specified flags and set install prefix to ~/ws/install
+          # Configure with specified flags and set install prefix to $HOME/ws/install
           cmake ../../src \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DENABLE_TESTS=ON \
-            -DCMAKE_INSTALL_PREFIX=~/ws/install
+            -DCMAKE_INSTALL_PREFIX=$HOME/ws/install
 
           # Install to the specified install directory
           make install
@@ -65,4 +65,4 @@ jobs:
           pip install pre-commit cmakelang[YAML]
 
       - name: Run pre-commit checks
-        run: pre-commit run --all-files --files ~/ws/src
+        run: pre-commit run --all-files --files $HOME/ws/src
