@@ -89,6 +89,6 @@ jobs:
           cd src/$PACKAGE_NAME
 
           # Run pre-commit checks
-          # pre-commit run --show-diff-on-failure --color=always --all-files
+          pre-commit run --show-diff-on-failure --color=always --all-files
 
 
