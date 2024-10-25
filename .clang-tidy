@@ -1,24 +1,10 @@
----
 Checks: >
-  google-*,
-  clang-diagnostic-*,
-  clang-analyzer-*,
-  cppcoreguidelines-*,
-  modernize-*,
-  -modernize-use-trailing-return-type,
-  bugprone-*,
-  performance-*,
-  readability-identifier-naming,
-  -google-readability-braces-around-statements,
-  -cppcoreguidelines-avoid-magic-numbers,
-  llvm-header-guard,
-
+  google-*, clang-diagnostic-*, clang-analyzer-*, cppcoreguidelines-*, modernize-*, -modernize-use-trailing-return-type,
+  bugprone-*, performance-*, readability-identifier-naming, -google-readability-braces-around-statements,
+  -cppcoreguidelines-avoid-magic-numbers, llvm-header-guard, #magic___^_^___line
 WarningsAsErrors: '*'
-
 FormatStyle: file
-
-HeaderFilterRegex: '.*'
-
+HeaderFilterRegex: .*
 CheckOptions:
   - key: readability-identifier-naming.ClassCase
     value: CamelCase
@@ -40,4 +26,3 @@ CheckOptions:
     value: p
   - key: readability-identifier-naming.ConstantCase
     value: UPPER_CASE
-...

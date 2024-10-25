@@ -2,9 +2,8 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.3.0
     hooks:
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
-    -   id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
 
   - repo: https://github.com/pre-commit/mirrors-clang-format
     rev: v19.1.2
@@ -21,10 +20,10 @@ repos:
         language: system
         files: \.(c|h|cc)$
         args:
-          - "-p"
-          - "../../build/PackageName/"  # Replace 'build/' with your actual compilation database path (add set(CMAKE_EXPORT_COMPILE_COMMANDS ON) in CMakeLists.txt)
-          - "-extra-arg=-isystem"
-          - "-extra-arg=../../install/include"  # Replace 'install/include' with your actual system include path
+          - -p
+          - ../../build/PackageName/ # Replace 'build/' with your actual compilation database path (add set(CMAKE_EXPORT_COMPILE_COMMANDS ON) in CMakeLists.txt)
+          - -extra-arg=-isystem
+          - -extra-arg=../../install/include # Replace 'install/include' with your actual system include path
 
       - id: cpp-lint
         name: cpp-lint
@@ -32,10 +31,10 @@ repos:
         language: system
         files: \.(cpp|hpp)$
         args:
-          - "-p"
-          - "../../build/PackageName/"  # Replace 'build/' with your actual compilation database path (add set(CMAKE_EXPORT_COMPILE_COMMANDS ON) in CMakeLists.txt)
-          - "-extra-arg=-isystem"
-          - "-extra-arg=../../install/include"  # Replace 'install/include' with your actual system include path
+          - -p
+          - ../../build/PackageName/ # Replace 'build/' with your actual compilation database path (add set(CMAKE_EXPORT_COMPILE_COMMANDS ON) in CMakeLists.txt)
+          - -extra-arg=-isystem
+          - -extra-arg=../../install/include # Replace 'install/include' with your actual system include path
 
       - id: cmake-format
         name: cmake-format
@@ -50,8 +49,14 @@ repos:
         language: python
         types: [cmake]
 
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.10.0
+    hooks:
+      - id: yamlfmt
+        args: [-conf, .yamlfmt.yaml]
+
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.42.0
     hooks:
-    - id: markdownlint
-      args: ["--fix"]
+      - id: markdownlint
+        args: [--fix]
