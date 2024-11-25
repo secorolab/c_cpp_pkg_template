@@ -36,18 +36,20 @@ repos:
           - -extra-arg=../../install/include # Replace 'install/include' with your actual system include path
 
       - id: cmake-format
-        name: cmake-format
-        entry: cmake-format
-        language: python
-        types: [cmake]
-        args: [--line-width, '100', '--tab-size', '4', '--in-place']
+        name: CMake Format
+        entry: bash -c 'find . \( -name 'CMakeLists.txt' \) -exec cmake-format --line-width 100 --tab-size
+          4 -i {} \;'
+        language: system
+        types: [text]
+        pass_filenames: false
 
       - id: cmake-lint
         name: cmake-lint
-        entry: cmake-lint
-        language: python
-        types: [cmake]
-        args: ['--disabled-codes', 'C0113 C0301']
+        entry: bash -c 'find . -name CMakeLists.txt -exec cmake-lint {} --disabled-codes C0113 C0301 C0307
+          \;'
+        language: system
+        types: [text]
+        pass_filenames: false
 
   - repo: https://github.com/google/yamlfmt
     rev: v0.10.0
