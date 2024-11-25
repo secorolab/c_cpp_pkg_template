@@ -40,19 +40,21 @@ repos:
         entry: cmake-format
         language: python
         types: [cmake]
-        args: [--in-place]
+        args: [--line-width, '100', '--tab-size', '4', '--in-place']
 
       - id: cmake-lint
         name: cmake-lint
         entry: cmake-lint
         language: python
         types: [cmake]
+        args: ['--disabled-codes', 'C0113 C0301']
 
   - repo: https://github.com/google/yamlfmt
     rev: v0.10.0
     hooks:
       - id: yamlfmt
-        args: [-conf, .yamlfmt.yaml]
+        args: ['-formatter', 'max_line_length=100', '-formatter', 'indent=2', '-formatter', 'retain_line_breaks=true',
+          '-formatter', 'include_document_start=false']
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.42.0

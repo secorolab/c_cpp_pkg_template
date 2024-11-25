@@ -2,6 +2,11 @@ site_name: PackageName documentation
 site_url: https://secorolab.github.io/c_cpp_pkg_template/
 repo_url: https://github.com/secorolab/c_cpp_pkg_template
 repo_name: secorolab/c_cpp_pkg_template
+
+# nav:
+#   - Home: index.md
+#   - API Reference: reference/
+
 theme:
   #  logo: assets/logo.png
   icon:
@@ -10,20 +15,24 @@ theme:
   palette:
     # Palette toggle for automatic mode
     - media: (prefers-color-scheme)
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-auto
         name: Switch to light mode
         # Palette toggle for light mode
     - media: '(prefers-color-scheme: light)'
       scheme: default
-      primary: black
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
         # Palette toggle for dark mode
     - media: '(prefers-color-scheme: dark)'
       scheme: slate
-      primary: black
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
@@ -71,6 +80,8 @@ markdown_extensions:
 plugins:
   - search
   - awesome-pages
+extra_css:
+  - styles/extra.css
 extra:
   social:
     - icon: fontawesome/brands/github
