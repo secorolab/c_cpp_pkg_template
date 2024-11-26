@@ -8,6 +8,7 @@ include(GNUInstallDirs)
 
 set(CMAKE_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
 
+option(ENABLE_DOC "Build documentation" Off)
 option(ENABLE_TESTS "Build unit tests" Off)
 option(ENABLE_PACKAGE_REGISTRY "Add this package to CMake's package registry" Off)
 
@@ -17,6 +18,49 @@ if(ENABLE_TESTS)
     message(STATUS "Building tests")
     enable_testing()
     add_subdirectory(test)
+endif()
+
+if(ENABLE_DOC)
+    # Find Doxygen package
+    find_package(Doxygen REQUIRED)
+
+    # Set Doxygen variables
+    set(DOXYGEN_GENERATE_HTML YES) # Enable HTML documentation generation
+    set(DOXYGEN_GENERATE_XML NO) # Disable XML output (optional, depends on your needs)
+    set(DOXYGEN_EXCLUDE "test/*") # Optionally exclude test folders from documentation
+
+    # Set the paths for the input sources and the output directory
+    set(DOXYGEN_INPUT_DIR "${CMAKE_SOURCE_DIR}/src") # Path to source code directory
+    set(DOXYGEN_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include") # Path to include directory
+    set(DOXYGEN_README "${CMAKE_SOURCE_DIR}/README.md") # Path to README.md
+    set(DOXYGEN_OUTPUT_DIR "${CMAKE_BINARY_DIR}/docs") # Output directory for the docs
+    # set(HTML_EXTRA_STYLESHEET "${CMAKE_SOURCE_DIR}/docs/styles/doxy.css")  # Path to custom CSS
+    # file
+
+    # Ensure that the output directory exists
+    file(MAKE_DIRECTORY ${DOXYGEN_OUTPUT_DIR})
+
+    # Provide path to Doxygen config file
+    set(DOXYGEN_CONFIG_FILE "${CMAKE_SOURCE_DIR}/Doxyfile.in") # Path to your Doxygen configuration
+                                                               # file
+
+    # Check if Doxygen configuration file exists
+    if(EXISTS "${DOXYGEN_CONFIG_FILE}")
+        message(STATUS "Doxygen config file found: ${DOXYGEN_CONFIG_FILE}")
+    else()
+        message(FATAL_ERROR "Doxygen config file not found!")
+    endif()
+
+    # Modify the Doxyfile variables in the CMakeLists.txt
+    configure_file(${CMAKE_SOURCE_DIR}/Doxyfile.in ${CMAKE_BINARY_DIR}/Doxyfile @ONLY)
+
+    # Add custom target to generate docs using Doxygen
+    add_custom_target(
+        docs
+        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM)
 endif()
 
 # Export this package to CMake's package registry

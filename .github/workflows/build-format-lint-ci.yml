@@ -1,7 +1,6 @@
-name: Formatting and Linting
+name: Build, Format, and Lint CI
 
 on:
-
   pull_request:
     branches:
       - main
@@ -11,64 +10,55 @@ on:
       - main
 
 jobs:
-
   setup-build-lint:
-
     runs-on: ubuntu-latest
 
     steps:
       - name: Install dependencies
         run: |
-          sudo apt update
-          sudo apt-get install -y check clang-format clang-tidy cmake
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update
+          apt-get install -y check clang-format clang-tidy cmake
 
       - name: Set up workspace
         run: |
           # Create workspace structure
           mkdir -p ws/src ws/build ws/install
 
+      - run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
+
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          path: ws/src/temp
+          path: "ws/src/${{ env.REPOSITORY_NAME }}/"
 
       - name: Set up build
         working-directory: ws
         run: |
-          # Extract package name from CMakeLists.txt project() definition
-          PACKAGE_NAME=$(grep -m1 -Po 'project\(\K[^\)]+' src/temp/CMakeLists.txt)
-
-          echo PACKAGE_NAME=$PACKAGE_NAME >> $GITHUB_ENV
-
-          # create a directory for the package in src
-          mkdir -p src/$PACKAGE_NAME
-
-          # Move all files and directories in src to the package-specific directory
-          mv src/temp/{.[!.],}* src/$PACKAGE_NAME
-
-          # Remove the temporary directory
-          rm -rf src/temp
-
           # Create build directory for the package
-          mkdir -p build/$PACKAGE_NAME
+          mkdir -p build/$REPOSITORY_NAME
 
           # Navigate to the package-specific build directory
-          cd build/$PACKAGE_NAME
+          cd build/$REPOSITORY_NAME
 
+      - name: Configure and build
+        working-directory: ws/build/${{ env.REPOSITORY_NAME }}
+        run: |
           # Configure with specified flags and set install prefix to install
-          cmake ../../src/$PACKAGE_NAME \
+          cmake ../../src/$REPOSITORY_NAME \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DENABLE_TESTS=ON \
             -DCMAKE_INSTALL_PREFIX=../../install
+            # -DENABLE_DOC=ON \
 
-          # Install to the specified install directory
-          make install
+          # Build the package
+          cmake --build .
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
       - name: Install python dependencies
         run: |
@@ -86,11 +76,9 @@ jobs:
         working-directory: ws
         run: |
           # cd to the package-specific directory
-          cd src/$PACKAGE_NAME
+          cd src/$REPOSITORY_NAME
 
           pre-commit autoupdate --repo https://github.com/pre-commit/pre-commit-hooks
 
           # Run pre-commit checks
           pre-commit run --show-diff-on-failure --color=always --all-files
-
-

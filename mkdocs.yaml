@@ -3,9 +3,9 @@ site_url: https://secorolab.github.io/c_cpp_pkg_template/
 repo_url: https://github.com/secorolab/c_cpp_pkg_template
 repo_name: secorolab/c_cpp_pkg_template
 
-# nav:
-#   - Home: index.md
-#   - API Reference: reference/
+nav:
+  - Home: index.md
+  - API Reference: api_html/index.html
 
 theme:
   #  logo: assets/logo.png

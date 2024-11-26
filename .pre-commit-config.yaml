@@ -20,7 +20,7 @@ repos:
         files: \.(c|h|cc)$
         args:
           - -p
-          - ../../build/PackageName/ # Replace 'build/' with your actual compilation database path (add set(CMAKE_EXPORT_COMPILE_COMMANDS ON) in CMakeLists.txt)
+          - ../../build/c_cpp_pkg_template/ # Replace 'build/' with your actual compilation database path (add set(CMAKE_EXPORT_COMPILE_COMMANDS ON) in CMakeLists.txt)
           - -extra-arg=-isystem
           - -extra-arg=../../install/include # Replace 'install/include' with your actual system include path
 
@@ -31,7 +31,7 @@ repos:
         files: \.(cpp|hpp)$
         args:
           - -p
-          - ../../build/PackageName/ # Replace 'build/' with your actual compilation database path (add set(CMAKE_EXPORT_COMPILE_COMMANDS ON) in CMakeLists.txt)
+          - ../../build/c_cpp_pkg_template/ # Replace 'build/' with your actual compilation database path (add set(CMAKE_EXPORT_COMPILE_COMMANDS ON) in CMakeLists.txt)
           - -extra-arg=-isystem
           - -extra-arg=../../install/include # Replace 'install/include' with your actual system include path
 
