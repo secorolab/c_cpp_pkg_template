@@ -31,8 +31,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          apt-get update
-          apt-get install -y doxygen cmake
+          sudo apt-get update
+          sudo apt-get install -y doxygen cmake
 
       - name: Build API docs
         run: |

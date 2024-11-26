@@ -16,9 +16,8 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          export DEBIAN_FRONTEND=noninteractive
-          apt-get update
-          apt-get install -y check clang-format clang-tidy cmake
+          sudo apt-get update
+          sudo apt-get install -y check clang-format clang-tidy cmake
 
       - name: Set up workspace
         run: |
