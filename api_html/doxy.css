@@ -1,0 +1,133 @@
+:root {
+    --md-primary-fg-color:        #9d2246;
+    --md-primary-fg-color--light: #d50c2f;
+    --md-primary-fg-color--dark:  #9d2246;
+    --md-accent-fg-color:         #f39ca9;
+}
+
+#titlearea {
+    background-color: var(--md-primary-fg-color);
+    color: white;
+}
+
+.header {
+    /* title color */
+    color: white;
+
+    .headertitle {
+        background-color: var(--md-primary-fg-color);
+    }
+
+    .summary, a {
+        color: white;
+    }
+}
+
+#nav-tree li div:hover {
+    background-image: none; /* Remove background image */
+    background-repeat: no-repeat; /* Ensure no repeat */
+    background-color: var(--md-accent-fg-color); /* Change background color on hover */
+    color: black; /* Change text color on hover */
+    text-shadow: none; /* Remove text shadow on hover */
+}
+
+#nav-tree li div:hover * {
+    background-color: var(--md-accent-fg-color);
+    color: black; /* Change text color on hover */
+}
+
+#nav-tree li div:hover a {
+    background: none; /* Ensure no background on hover */
+    color: inherit; /* Inherit color from the div */
+}
+
+#nav-tree li div:hover a:hover {
+    background: None;
+}
+
+#nav-tree .selected {
+    background-image: none; /* Remove background image */
+    background-repeat: no-repeat; /* Ensure no repeat */
+    background-color: var(--md-primary-fg-color--light);
+    color: white;
+    text-shadow: none; /* Remove text shadow */
+}
+
+/* Ensure no hover effect for selected item */
+#nav-tree .selected:hover {
+    background-color: var(--md-primary-fg-color--light); /* Keep the selected background color */
+    color: white; /* Keep the selected text color */
+    text-shadow: none; /* Keep the selected text shadow */
+}
+
+#nav-tree .selected:hover * {
+    background-color: var(--md-primary-fg-color--light);
+    color: white; /* Keep the selected text color */
+}
+
+#nav-path ul {
+    background-image: none;
+    background-color: var(--md-primary-fg-color);
+    border: none;
+}
+
+#nav-path ul li {
+    display: inline;
+    background-image: none;
+    padding-right: 0em;
+    padding-left: 5px;
+}
+
+#nav-path > ul > li > * {
+    color: white;
+    text-shadow: none;
+}
+
+#nav-path > ul > li.footer {
+    color: white;
+    text-shadow: none;
+    padding-right: 2em;
+}
+
+#nav-path ul li a {
+    color: white;
+    text-shadow: none;
+    display: inline-block;
+}
+
+#nav-path ul li:not(:last-child)::after {
+    content: ' /';
+    color: white;
+}
+
+#nav-path ul li a img{
+    width: 5em;
+}
+
+.nav-button-goto-docs-atag {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 1px 5px;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+    border-radius: 5px;
+  }
+
+  .nav-button-goto-docs-atag:hover {
+    background-color: var(--md-accent-fg-color);
+    text-decoration: none;
+    color: black;
+    border-color: white;
+  }
+
+  #side-nav {
+    min-width: 275px;
+    max-width: 50vw;
+  }
