@@ -32,7 +32,22 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y doxygen cmake
+          sudo apt-get install -y cmake graphviz flex bison
+
+      - name: Install Doxygen from source
+        run: |
+          wget https://doxygen.nl/files/doxygen-1.12.0.src.tar.gz
+          tar -xvzf doxygen-1.12.0.src.tar.gz
+          cd doxygen-1.12.0
+          mkdir build
+          cd build
+          cmake -G "Unix Makefiles" ..
+          make -j $(nproc)
+          sudo make install
+          cd ../..
+          # Clean up
+          rm -rf doxygen-1.12.0
+          rm doxygen-1.12.0.src.tar.gz
 
       - name: Build API docs
         run: |
@@ -42,7 +57,7 @@ jobs:
 
           cmake --build . --target docs
 
-          mv docs/html ../docs/api_html
+          mv docs/api_html ../docs/api_html
 
       - uses: actions/cache@v4
         with:

@@ -34,15 +34,14 @@ if(ENABLE_DOC)
     set(DOXYGEN_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include") # Path to include directory
     set(DOXYGEN_README "${CMAKE_SOURCE_DIR}/README.md") # Path to README.md
     set(DOXYGEN_OUTPUT_DIR "${CMAKE_BINARY_DIR}/docs") # Output directory for the docs
-    # set(HTML_EXTRA_STYLESHEET "${CMAKE_SOURCE_DIR}/docs/styles/doxy.css")  # Path to custom CSS
-    # file
+    set(HTML_EXTRA_STYLESHEET "${CMAKE_SOURCE_DIR}/docs/styles/doxy.css") # Path to custom CSS
+    set(HTML_HEADER "${CMAKE_SOURCE_DIR}/docs/styles/doxy_header.html") # Path to custom header
 
     # Ensure that the output directory exists
     file(MAKE_DIRECTORY ${DOXYGEN_OUTPUT_DIR})
 
     # Provide path to Doxygen config file
     set(DOXYGEN_CONFIG_FILE "${CMAKE_SOURCE_DIR}/Doxyfile.in") # Path to your Doxygen configuration
-                                                               # file
 
     # Check if Doxygen configuration file exists
     if(EXISTS "${DOXYGEN_CONFIG_FILE}")

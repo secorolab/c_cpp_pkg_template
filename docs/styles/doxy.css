@@ -103,3 +103,31 @@
 #nav-path ul li a img{
     width: 5em;
 }
+
+.nav-button-goto-docs-atag {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 1px 5px;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+    border-radius: 5px;
+  }
+
+  .nav-button-goto-docs-atag:hover {
+    background-color: var(--md-accent-fg-color);
+    text-decoration: none;
+    color: black;
+    border-color: white;
+  }
+
+  #side-nav {
+    min-width: 275px;
+    max-width: 50vw;
+  }
