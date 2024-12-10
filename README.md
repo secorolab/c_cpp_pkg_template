@@ -40,12 +40,6 @@ You can use any directory structure you prefer.
 
 1. Click on `Use this template` from the repository toolbar and give it a new name.
 
-    ```bash
-    cd ~/c_cpp_ws/src
-
-    git clone git@github.com:secorolab/c_cpp_pkg_template.git
-    ```
-
 2. Clone the `new` repository
 
     ```bash
