@@ -36,9 +36,9 @@ You can use any directory structure you prefer.
 
 ### Package setup
 
-#### Cloning
+#### Create from template
 
-1. Clone the repository
+1. Click on `Use this template` from the repository toolbar and give it a new name.
 
     ```bash
     cd ~/c_cpp_ws/src
@@ -46,12 +46,12 @@ You can use any directory structure you prefer.
     git clone git@github.com:secorolab/c_cpp_pkg_template.git
     ```
 
-2. Rename the cloned repository
+2. Clone the `new` repository
 
     ```bash
-    mv c_cpp_pkg_template <PackageName>
+    cd ~/c_cpp_ws/src
 
-    cd <PackageName>
+    git clone <url>
     ```
 
 3. Rename the `PackageName` in the CMakeLists.txt file, header and source files, folder names,
